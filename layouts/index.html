@@ -1,22 +1,20 @@
 {{ define "main" }}
 
-<h1><a href="/photos">Latest photos</a></h1>
+<h1><a href="/photos">Gallery</a></h1>
 
 <div class="image-grid">
 {{ with .Site.GetPage "/photos" }}
     {{ range first 9 (sort .Data.Pages "Date" "desc")}}
-        <a href="{{ .Permalink }}" title="{{ .Title }}">
-        {{ $image := .Page.Resources.GetMatch .Params.image }}
-        {{ with $image }}
-            {{ $thumb := .Resize "400x" }}
-            <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}" class="img-responsive">
-        {{end}}
-        </a>
+    {{ if and (isset .Params "image") .Params.image }}
+    <a href="{{ .Permalink }}" title="{{ .Title }}">
+        <img src="{{ .Params.Image }}" alt="{{ .Title }}" class="img-responsive">
+    </a>
+{{ end }}
     {{ end }}
 {{ end }}
 </div>
 
-<h1><a href="/posts">Latest posts</a></h1>
+<h1><a href="/posts">Posts</a></h1>
 
 <div class="posts-list">
 {{ with .Site.GetPage "/posts" }}
@@ -33,7 +31,7 @@
 <h1>About</h1>
 
 <p>
-Console is a minimal, responsive and light theme for Hugo inspired by Linux console.  <a href="about/">(more)</a>
+{{ .Site.Params.About }} <a href="about/">(more)</a>
 </p>
 <br/>
 
