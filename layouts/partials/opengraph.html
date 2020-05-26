@@ -3,13 +3,8 @@
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 
-{{- with .Params.image }}
-{{ $image := $.Resources.GetMatch . }}
-{{ with $image }}
-  {{ $thumb := .Resize "400x" }}
-<meta property="og:image" content="{{ $thumb.Permalink }}">
-{{ end }}
-{{ end }}
+
+<meta property="og:image" content="{{ .Site.Params.Storage }}{{ .Params.Name }}.1920.jpg">
 
 {{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
 {{- if .IsPage }}

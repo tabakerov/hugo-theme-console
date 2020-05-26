@@ -1,13 +1,15 @@
 {{ define "main" }}
 <h1>{{ .Page.Title }}</h1>
+
 {{ .Content }}
+
 <div class="image-grid">
     {{ range sort .Data.Pages "Date" "desc" }}
-        {{ if and (isset .Params "image") .Params.image }}
-            <a href="{{ .Permalink }}" title="{{ .Title }}">
-                <img src="{{ .Params.Image }}" alt="{{ .Title }}" class="img-responsive">
+        
+            <a href="{{ .Permalink }}" title="{{ .Params.Name }}">
+                <img src="{{ .Site.Params.Storage }}{{ .Params.Name }}.720.jpg" alt="{{ .Params.Name }}" class="img-responsive">
             </a>
-        {{ end }}
+        
     {{ end }}
 </div>
 {{ end }}

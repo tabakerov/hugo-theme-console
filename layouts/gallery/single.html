@@ -1,7 +1,7 @@
 {{ define "main" }}
-<h1>{{ .Page.Title }}</h1>
+<h1>{{ .Params.Name }}</h1>
 
-    <a href="{{ .Params.Link }}" target="blank"><img src="{{ .Params.Image }}" alt="{{ .Page.Title }}" class="img-responsive gallery-image"></a>
+    <a href="{{ .Site.Params.Storage }}{{ .Params.Name }}{{ .Params.Sourceextension }}" target="blank"><img src="{{ .Site.Params.Storage }}{{ .Params.Name }}.1920.jpg" alt="{{ .Page.Title }}" class="img-responsive gallery-image"></a>
 
 {{ .Content }}
 
